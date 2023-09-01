@@ -10,11 +10,27 @@ const fetchBreeds = async () => {
     return axios
       .get(`${apiUrl}/breeds`)
       .then(response => {
+        console.log(response.data);
         return response.data;
       });
     }catch(error) {
         new Error('Oops! Something went wrong! Try reloading the page!');
       }};
   // ---------errrprp zmienic z uzyciem biblioteki. 
-  export{fetchBreeds}
+
+const fetchBreedsInfo = async (breedId) => {
+    try{
+        return axios
+          .get(`${apiUrl}/images/search?breed_ids=${breedId}`)
+          .then(response => {
+            //console.log(response.data);
+            return response.data;
+          });
+        }catch(error) {
+            new Error('Oops! Something went wrong! Try reloading the page!');
+          }};
+      // ---------errrprp zmienic z uzyciem biblioteki. 
+
+
+  export{fetchBreeds, fetchBreedsInfo}
 
