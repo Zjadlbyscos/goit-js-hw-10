@@ -1,5 +1,13 @@
 import { fetchBreeds, fetchBreedsInfo } from './cat-api';
 
+import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
+
+import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
+
 const obj = {
   breedSelect: document.querySelector('.breed-select'),
   loader: document.querySelector('.loader'),
@@ -8,6 +16,26 @@ const obj = {
 };
 obj.loader.classList.add('is-hidden');
 obj.error.classList.add('is-hidden');
+obj.breedSelect.classList.add('is-hidden');
+obj.catInfo.classList.add('is-hiden');
+
+fetchBreeds()
+  .then((breeds) => {
+    breeds.forEach((breed) => {
+      obj.breedSelect.classList.remove('is-hidden')
+      const option = document.createElement('option');
+      option.value = breed.id;
+      option.textContent = breed.name;
+      obj.breedSelect.appendChild(option);
+    });
+    new SlimSelect({
+      select: '.breed-select',
+    });
+  })
+  .catch((error) => {
+    console.log(`Error:`, error);
+    obj.error.textContent = 'Oops! Something went wrong! Try reloading the page!';
+  });
 
 const changeHandler = (e) => {
   const selected = e.target.selectedOptions[0];
@@ -16,6 +44,8 @@ const changeHandler = (e) => {
     `${e.currentTarget.selectedIndex}, ${selected.text}, ${selected.value}`
   );
 
+
+  
   fetchBreedsInfo(breedID)
     .then((breedInfo) => {
       const catInfoHTML = `
@@ -38,21 +68,9 @@ const changeHandler = (e) => {
     });
 };
 
-fetchBreeds()
-  .then((breeds) => {
-    breeds.forEach((breed) => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.textContent = breed.name;
-      obj.breedSelect.appendChild(option);
-    });
-  })
-  .catch((error) => {
-    console.error(`Error:`, error);
-    obj.error.textContent = 'Oops! Something went wrong! Try reloading the page!';
-  });
+
 
 
   
 obj.breedSelect.addEventListener('change', changeHandler);
-obj.breedSelect.dispatchEvent(new Event('submit'));
+//obj.breedSelect.dispatchEvent(new Event('submit'));

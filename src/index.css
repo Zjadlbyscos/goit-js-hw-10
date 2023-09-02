@@ -1,11 +1,17 @@
 body{
     background-color: #9aa8af;
-    margin: 0 auto;
+    margin: 2vw auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
-img {
+.is-hidden{
+    display: none;
+}
+
+
+/* img {
 
     width: 50vw;
     border: 1px solid #8096ae;
@@ -13,9 +19,7 @@ img {
     border-radius: 5px;
     margin: 0 auto;
 }
-.is-hidden{
-    display: none;
-}
+
 .breed-select{
     display: flex;
     align-items: center;
@@ -31,4 +35,4 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  }
+  } */
