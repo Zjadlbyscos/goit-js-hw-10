@@ -11,28 +11,24 @@ body{
 }
 
 
-/* img {
+img {
 
     width: 50vw;
     border: 1px solid #8096ae;
     display: block;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 2vw auto;
 }
 
 .breed-select{
-    display: flex;
-    align-items: center;
-    width: 50vw;
-    height: 10vw;
-    text-align: center;
-    font-size: 2vw;
-    background-color: #a39aa4;
-    border-radius: 5px;
+background-color: #9aa8af;
+color: black;
 
 }
 .cat-info {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  } */
+    margin: 0 auto;
+
+  } 

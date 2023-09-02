@@ -16,7 +16,7 @@ const fetchBreeds = async () => {
     }catch(error) {
         new Error('Oops! Something went wrong! Try reloading the page!');
       }};
-  // ---------errrprp zmienic z uzyciem biblioteki. 
+
 
 const fetchBreedsInfo = async (breedId) => {
     try{
@@ -29,7 +29,7 @@ const fetchBreedsInfo = async (breedId) => {
         }catch(error) {
             new Error('Oops! Something went wrong! Try reloading the page!');
           }};
-      // ---------errrprp zmienic z uzyciem biblioteki. 
+
 
 
   export{fetchBreeds, fetchBreedsInfo}

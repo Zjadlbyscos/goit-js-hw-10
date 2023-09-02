@@ -4,7 +4,6 @@ import Notiflix from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
-
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
@@ -20,9 +19,9 @@ obj.breedSelect.classList.add('is-hidden');
 obj.catInfo.classList.add('is-hiden');
 
 fetchBreeds()
-  .then((breeds) => {
-    breeds.forEach((breed) => {
-      obj.breedSelect.classList.remove('is-hidden')
+  .then(breeds => {
+    breeds.forEach(breed => {
+      obj.breedSelect.classList.remove('is-hidden');
       const option = document.createElement('option');
       option.value = breed.id;
       option.textContent = breed.name;
@@ -32,22 +31,22 @@ fetchBreeds()
       select: '.breed-select',
     });
   })
-  .catch((error) => {
+  .catch(error => {
     console.log(`Error:`, error);
-    obj.error.textContent = 'Oops! Something went wrong! Try reloading the page!';
+    Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    Loading.remove();
   });
 
-const changeHandler = (e) => {
+const changeHandler = e => {
+  Loading.circle('Loading data, please wait...');
   const selected = e.target.selectedOptions[0];
   const breedID = selected.value;
   console.log(
     `${e.currentTarget.selectedIndex}, ${selected.text}, ${selected.value}`
   );
 
-
-  
   fetchBreedsInfo(breedID)
-    .then((breedInfo) => {
+    .then(breedInfo => {
       const catInfoHTML = `
       <div class="group-div">
         <div>
@@ -60,17 +59,16 @@ const changeHandler = (e) => {
         </div>
       </div>
     `;
+      Loading.remove();
+      obj.catInfo.classList.remove('is-hidden');
       obj.catInfo.innerHTML = catInfoHTML;
     })
-    .catch((error) => {
+    .catch(error => {
       console.error(`Error:`, error);
-      obj.error.textContent = 'Oops! Something went wrong! Try reloading the page!';
+      Loading.remove();
+      Notify.failure('Oops! Something went wrong! Try reloading the page!')
     });
 };
 
-
-
-
-  
 obj.breedSelect.addEventListener('change', changeHandler);
 //obj.breedSelect.dispatchEvent(new Event('submit'));
