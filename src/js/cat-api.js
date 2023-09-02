@@ -10,7 +10,7 @@ const fetchBreeds = async () => {
     return axios
       .get(`${apiUrl}/breeds`)
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         return response.data;
       });
     }catch(error) {
