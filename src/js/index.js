@@ -13,7 +13,7 @@ const obj = {
   error: document.querySelector('.error'),
   catInfo: document.querySelector('.cat-info'),
 };
-obj.loader.classList.add('is-hidden');
+//obj.loader.classList.add('is-hidden');
 obj.error.classList.add('is-hidden');
 obj.breedSelect.classList.add('is-hidden');
 obj.catInfo.classList.add('is-hiden');
@@ -21,6 +21,7 @@ obj.catInfo.classList.add('is-hiden');
 fetchBreeds()
   .then(breeds => {
     breeds.forEach(breed => {
+      obj.loader.classList.add('is-hidden');
       obj.breedSelect.classList.remove('is-hidden');
       const option = document.createElement('option');
       option.value = breed.id;
@@ -35,6 +36,7 @@ fetchBreeds()
     console.log(`Error:`, error);
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
     Loading.remove();
+    obj.error.classList.remove('is-hidden');
   });
 
 const changeHandler = e => {
@@ -56,6 +58,7 @@ const changeHandler = e => {
           <h1>${breedInfo[0].breeds[0].name}</h1>
           <p>${breedInfo[0].breeds[0].description}</p>
           <p><strong>Temperament:</strong> ${breedInfo[0].breeds[0].temperament}</p>
+          <p><strong>Energy Level: </strong>${breedInfo[0].breeds[0].energy_level} </p>
         </div>
       </div>
     `;
@@ -66,7 +69,8 @@ const changeHandler = e => {
     .catch(error => {
       console.error(`Error:`, error);
       Loading.remove();
-      Notify.failure('Oops! Something went wrong! Try reloading the page!')
+      Notify.failure('Oops! Something went wrong! Try reloading the page!');
+      obj.error.classList.remove('is-hidden');
     });
 };
 
