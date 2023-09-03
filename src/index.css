@@ -30,3 +30,9 @@ img {
   margin: 0 auto;
   width: 50vw;
 }
+.ss-main{
+    background-color: #9aa8af;
+    color: black;
+  width: 50vw;
+  font-size: 26px;
+}
