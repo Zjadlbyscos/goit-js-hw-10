@@ -18,6 +18,8 @@ obj.error.classList.add('is-hidden');
 obj.breedSelect.classList.add('is-hidden');
 obj.catInfo.classList.add('is-hiden');
 
+obj.breedSelect.innerHTML = '<option value="" selected disabled>Select Breed :</option>';
+
 fetchBreeds()
   .then(breeds => {
     breeds.forEach(breed => {
@@ -30,6 +32,10 @@ fetchBreeds()
     });
     new SlimSelect({
       select: '.breed-select',
+      settings: {
+        placeholder : true,
+        placeholderText: 'Select Breed',
+      }
     });
   })
   .catch(error => {
@@ -59,6 +65,7 @@ const changeHandler = e => {
           <p>${breedInfo[0].breeds[0].description}</p>
           <p><strong>Temperament:</strong> ${breedInfo[0].breeds[0].temperament}</p>
           <p><strong>Energy Level: </strong>${breedInfo[0].breeds[0].energy_level} </p>
+          <p><strong>Stranger Friendly </strong>${breedInfo[0].breeds[0].stranger_friendly} </p>
         </div>
       </div>
     `;
