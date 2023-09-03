@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 55vw;
+  width: 50vw;
 }
 .is-hidden {
   display: none;
@@ -15,13 +15,13 @@ img {
   display: block;
   border-radius: 5px;
   margin: 2vw auto;
+  width: 50vw;
 }
 
 .breed-select {
   background-color: #9aa8af;
   color: black;
 
-  font-size: 26px;
 }
 .group-div {
   display: flex;
@@ -30,9 +30,7 @@ img {
   margin: 0 auto;
 
 }
-.ss-main{
+.ss-main .ss-content .ss-list .ss-option {
     background-color: #9aa8af;
     color: black;
-
-  font-size: 26px;
 }

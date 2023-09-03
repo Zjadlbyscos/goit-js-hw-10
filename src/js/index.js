@@ -53,25 +53,39 @@ const changeHandler = e => {
     `${e.currentTarget.selectedIndex}, ${selected.text}, ${selected.value}`
   );
 
+  function createStarRating(value) {
+    const starCount = Math.round(value);
+    const stars = '   🐈 '.repeat(starCount);
+    return stars;
+  }
+
   fetchBreedsInfo(breedID)
     .then(breedInfo => {
+      const EmergyLevelEmoji = createStarRating(
+        breedInfo[0].breeds[0].energy_level
+        
+      );
+      const FriendlyLevelEmoji = createStarRating(
+        breedInfo[0].breeds[0].stranger_friendly);
+
       const catInfoHTML = `
       <div class="group-div">
         <div>
-          <img src="${breedInfo[0].url}" alt="${breedInfo[0].breeds[0].name}" width="400"/>
+          <img src="${breedInfo[0].url}" alt="${breedInfo[0].breeds[0].name}"/>
         </div>
         <div>
           <h1>${breedInfo[0].breeds[0].name}</h1>
           <p>${breedInfo[0].breeds[0].description}</p>
           <p><strong>Temperament:</strong> ${breedInfo[0].breeds[0].temperament}</p>
-          <p><strong>Energy Level: </strong>${breedInfo[0].breeds[0].energy_level} </p>
-          <p><strong>Stranger Friendly </strong>${breedInfo[0].breeds[0].stranger_friendly} </p>
+          <p><strong>Energy Level: </strong>${breedInfo[0].breeds[0].energy_level} ${EmergyLevelEmoji}</p>
+          <p><strong>Stranger Friendly </strong>${breedInfo[0].breeds[0].stranger_friendly} ${FriendlyLevelEmoji} </p>
         </div>
       </div>
     `;
       Loading.remove();
       obj.catInfo.classList.remove('is-hidden');
       obj.catInfo.innerHTML = catInfoHTML;
+  
     })
     .catch(error => {
       console.error(`Error:`, error);
